@@ -9,14 +9,8 @@ trigger:
 variables:
   ARM_PASS: $(adminPass)
 
-
 pool:
   vmImage: ubuntu-latest
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 steps:
 - task: CopyFiles@2
@@ -28,11 +22,11 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: '<your-resource-manager-connection>'
+    azureResourceManagerConnection: 'a8aaea5b-4382-410f-800f-47eecd8042ef'
     subscriptionId: 'eb542737-3a91-471c-9ee7-4c29e13fbae1'
     action: 'Create'
     resourceGroupName: 'ARMPipelinesLAMP-rg'
-    location: '<your-closest-location>'
+    location: 'UK-South'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
